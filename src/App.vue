@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1> Please wait </h1>
+    <h1> Please wait {{ checkNFC() }}</h1>
   </div>
 </template>
 
@@ -13,10 +13,10 @@ export default {
     checkNFC(){
       let status = false;
       if(!("NDEFReader" in window)){
-        console.log("NAN pas de NFC");
+        console.log("NDEFReader" in window);
       }
       else{
-        console.log("YEP NFC dispo");
+        console.log("NDEFReader" in window);
         status = true;
       }
       return status;
