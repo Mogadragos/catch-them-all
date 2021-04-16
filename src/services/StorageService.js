@@ -10,23 +10,33 @@ class StorageService {
      * Récupération et mise en place des données de l'activité
      * @param {string} startChipId 
      */
-    setActivity(startChipId) {
-        console.log(localStorage);
+    setActivity(start_chip_id) {
 
-        this.activity = this.activities[startChipId];
+        this.activity = this.activities[start_chip_id];
 
         if(localStorage.activity_id !== this.activity.activity_id) {
             localStorage.activity_id = this.activity.activity_id;
-            localStorage.activeChips = [];
+            this.active_chips = [];
+            localStorage.active_chips = JSON.stringify([]);
+        } else {
+            this.active_chips = JSON.parse(localStorage.active_chips);
         }
 
         this.activityIsSet = true;
     }
 
+    /** 
+     * Découverte d'une nouvelle puce
+     * @param {string} chip_id 
+     */
     discoverChip(chip_id) {
-        console.log(localStorage.activeChips);
-        localStorage.activeChips.push(this.activity.chips[chip_id]);
-        console.log(localStorage.activeChips);
+        if(this.activityIsSet) {
+            console.log(localStorage.active_chips);
+            localStorage.active_chips.push(this.activity.chips[chip_id]);
+            console.log(localStorage.active_chips);
+        } else {
+            throw "Set activity before discover new chip";
+        }
     }
 }
 
