@@ -1,42 +1,22 @@
 <template>
-  <div>
-    <h1> Please wait </h1>
-  </div>
+  <nfc-checker @NFCChecked="toggleMainContent"></nfc-checker>
 </template>
 
 <script>
+import NfcChecker from './components/NfcChecker';
+
 export default {
   name: "App",
   components: {
+    NfcChecker,
   },
-  methods:{
-    checkNFC(){
-      let status = false;
-      if(!("NDEFReader" in window)){
-        console.log("NAN pas de NFC");
-      }
-      else{
-        console.log("YEP NFC dispo");
-        status = true;
-      }
-      return status;
+  methods: {
+    toggleMainContent(value) {
+      console.log(value);
     }
-  },
-  mounted(){
-    this.checkNFC();
   }
-
 };
 </script>
 
 <style>
-  div {
-    display: flex;
-    justify-content: center;
-    align-items : center;
-  }
-
-  h1 {
-    text-align: center; 
-  }
 </style>
