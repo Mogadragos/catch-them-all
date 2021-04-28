@@ -1,15 +1,19 @@
 <template>
-    NFC {{ NfcActive ? 'ok': 'pas ok' }}
+  <header-help></header-help>
+  NFC {{ NfcActive ? "ok" : "pas ok" }}
 </template>
 
 <script>
+import HeaderHelp from "./HeaderHelp";
+
 export default {
+  components: {
+    HeaderHelp,
+  },
   prop: {
-    NfcActive: Boolean
-  }
-}
+    NfcActive: Boolean,
+  },
+};
 </script>
 
-<style>
-
-</style>
+<style></style>
