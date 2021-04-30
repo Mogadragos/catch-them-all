@@ -5,35 +5,41 @@
 </template>
 
 <script>
+/*global NDEFReader*/
+
 export default {
   emits: ["NFCChecked"],
-  methods :{
-    check : async function(){
+  methods: {
+    check: async function () {
       if ("NDEFReader" in window) {
         console.log("NFC présent");
-      }else{
+      } else {
         console.log("NFC indisponible");
       }
     },
-    Read : async function(){
+    read: async function () {
       if ("NDEFReader" in window) {
-        const ndef = new NDEFReader();// obj for interaction with NFC
-         return new Promise((resolve, reject) => {
+        const ndef = new NDEFReader(); // obj for interaction with NFC
+        return new Promise((resolve, reject) => {
           const ctlr = new AbortController();
           ctlr.signal.onabort = reject;
-          ndef.addEventListener("reading", event => {
-            ctlr.abort();
-            resolve(event);
-          }, { once: true });
-          ndef.scan({ signal: ctlr.signal }).catch(err => reject(err));
+          ndef.addEventListener(
+            "reading",
+            (event) => {
+              ctlr.abort();
+              resolve(event);
+            },
+            { once: true }
+          );
+          ndef.scan({ signal: ctlr.signal }).catch((err) => reject(err));
         });
       }
     },
-    readLauch : function(){
-      read().then(({ serialNumber }) => {
+    readLauch: function () {
+      this.read().then(({ serialNumber }) => {
         console.log(serialNumber);
       });
-    }
+    },
   },
   mounted() {
     this.$emit("NFCChecked", "NDEFReader" in window);
