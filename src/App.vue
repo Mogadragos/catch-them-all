@@ -1,20 +1,14 @@
 <template>
-  <nfc-checker
-    v-if="!NfcChecked"
-    @NFCChecked="displayMainContent"
-  ></nfc-checker>
-  <app-content v-else :NfcActive="NfcActive"></app-content>
+  <app-content v-if="NfcChecked" :NfcActive="NfcActive"></app-content>
 </template>
 
 <script>
-import NfcChecker from "./components/NfcChecker";
 import AppContent from "./components/AppContent";
-//import NFCService from './services/NFCService.js';
+import NFCService from "./services/NFCService.ts";
 
 export default {
   name: "App",
   components: {
-    NfcChecker,
     AppContent,
   },
   data() {
@@ -23,11 +17,11 @@ export default {
       NfcActive: false,
     };
   },
-  methods: {
-    displayMainContent(value) {
+  mounted() {
+    NFCService.Check().then((NfcActive) => {
       this.NfcChecked = true;
-      this.NfcActive = value;
-    },
+      this.NfcActive = NfcActive;
+    });
   },
 };
 </script>
