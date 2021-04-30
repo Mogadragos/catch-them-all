@@ -1,20 +1,13 @@
 <template>
   <header>
-    <button v-on:click="openSettings">
+    <button v-on:click="$emit('openSettings')">
       <img src="../assets/img/settings.svg" alt="Settings" />
     </button>
   </header>
 </template>
 
 <script>
-export default {
-  methods: {
-    openSettings() {
-      console.log("open modal here");
-      // TODO: open modal
-    },
-  },
-};
+export default {};
 </script>
 
 <style scoped>
