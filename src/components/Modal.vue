@@ -1,6 +1,6 @@
 <template>
   <transition name="modal">
-    <div v-if="show" class="modal-mask">
+    <div v-if="show" :style="cssVars" class="modal-mask">
       <div class="modal-container">
         <div class="modal-header">
           <slot name="header"> default header </slot>
@@ -27,6 +27,17 @@
 export default {
   props: {
     show: Boolean,
+    zIndex: {
+      type: Number,
+      default: 9999,
+    },
+  },
+  computed: {
+    cssVars() {
+      return {
+        "--z-index": this.zIndex,
+      };
+    },
   },
 };
 </script>
@@ -37,12 +48,11 @@ export default {
   justify-content: center;
   align-items: center;
   position: fixed;
-  z-index: 9998;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.4);
+  z-index: var(--z-index);
 }
 
 .modal-container {

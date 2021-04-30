@@ -2,7 +2,11 @@
   <header-help @openSettings="showSettingsModal = true"></header-help>
   NFC {{ NfcActive ? "ok" : "pas ok" }}
   <section>
-    <modal :show="showSettingsModal" @close="showSettingsModal = false">
+    <modal
+      :show="showSettingsModal"
+      :zIndex="150"
+      @close="showSettingsModal = false"
+    >
       <template v-slot:header>
         <h3>custom header</h3>
       </template>
