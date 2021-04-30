@@ -9,6 +9,7 @@
 <script>
 import NfcChecker from "./components/NfcChecker";
 import AppContent from "./components/AppContent";
+//import NFCService from './services/NFCService.js';
 
 export default {
   name: "App",
