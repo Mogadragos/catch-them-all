@@ -1,23 +1,37 @@
 <template>
+  <params-menu :show="showSettings"></params-menu>
   <header>
-    <button v-on:click="$emit('openSettings')">
+    <button v-on:click="showSettings = !showSettings">
       <img src="../assets/img/settings.svg" alt="Settings" />
     </button>
   </header>
 </template>
 
 <script>
-export default {};
+import ParamsMenu from "./ParamsMenu";
+
+export default {
+  components: {
+    ParamsMenu,
+  },
+  data() {
+    return {
+      showSettings: false,
+    };
+  },
+};
 </script>
 
 <style scoped>
 header {
+  position: relative;
   width: 100vw;
   height: 50px;
   background: linear-gradient(to bottom right, red, white);
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  z-index: 10;
 }
 
 button {
