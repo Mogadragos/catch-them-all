@@ -1,11 +1,18 @@
 <template>
   <div class="center">
-    <button class="LauchnBtn">LAUCHN</button>
+    <button class="LauchnBtn">{{ text }}</button>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    text: {
+      type: String,
+      default: "LAUNCH",
+    },
+  },
+};
 </script>
 
 <style>
