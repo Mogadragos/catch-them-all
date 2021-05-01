@@ -1,8 +1,8 @@
 <template>
-  <params-menu :show="showSettings"></params-menu>
+  <params-menu :show="showSettings" :transitionTime="transitionTime"></params-menu>
   <header>
-    <button v-on:click="showSettings = !showSettings">
-      <img src="../assets/img/settings.svg" alt="Settings" />
+    <button v-on:click="toggleParams">
+      <img src="../assets/img/settings.svg" alt="Settings" :style="cssVars" v-bind:class="{ rotate : showSettings }"/>
     </button>
   </header>
 </template>
@@ -13,9 +13,22 @@ export default {
   components: { ParamsMenu },
   data() {
     return {
-      showSettings: false
+      showSettings: false,
+      transitionTime: ".5s"
     }
-  }};
+  },
+  methods: {
+    toggleParams() {
+      this.showSettings = !this.showSettings;
+    }
+  },
+  computed: {
+    cssVars() {
+      return {
+        "--transition-time": this.transitionTime,
+      };
+    },
+  },};
 </script>
 
 <style scoped>
@@ -42,5 +55,12 @@ button {
 img {
   width: 40px;
   height: 40px;
+  transition: transform var(--transition-time) ease-in;
+}
+
+/* Transitions (vueJS) */
+
+.rotate {
+  transform: rotate(-270deg);
 }
 </style>
