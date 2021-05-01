@@ -1,10 +1,15 @@
 <template>
-  <stylax-button :showText="'Scan'" v-on:click="scanNFC = true"></stylax-button>
-  <stylax-button :showText="'Map'"></stylax-button>
-  <stylax-button
-    :showText="'Bibliothèque'"
-    v-on:click="showLibrary = true"
-  ></stylax-button>
+<section class="h-33 title-section">
+  <h1>{{ name }}</h1>
+</section>
+  <section class="h-33 buttons-section">
+    <stylax-button :showText="'Scan'" v-on:click="scanNFC = true"></stylax-button>
+    <stylax-button :showText="'Map'"></stylax-button>
+    <stylax-button
+      :showText="'Bibliothèque'"
+      v-on:click="showLibrary = true"
+    ></stylax-button>
+  </section>
   <modal-nfc
     :scanNFC="scanNFC"
     :canCancel="true"
@@ -34,6 +39,7 @@ export default {
       clicked: "non",
       scanNFC: false,
       showLibrary: false,
+      name: StorageService.activity.name,
     };
   },
   methods: {
@@ -53,4 +59,25 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.h-33 {
+  height: 33%;
+}
+
+.title-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title-section > h1 {
+  font-size: 2.2em;
+  text-shadow: 5px 5px 5px rgba(0, 0, 0, .20);
+}
+
+.buttons-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+</style>

@@ -12,7 +12,7 @@ export default {
 
 <style>
 .stylaxBtn {
-  align-self: center;
+  display: block;
   padding: 20px 100px 18px 100px;
   color: white;
   font-family: arial;
@@ -24,6 +24,7 @@ export default {
   border-radius: 10px;
   transition: all 0.1s ease-in-out;
   cursor: pointer;
+  margin: auto;
 }
 
 .stylaxBtn:active {
