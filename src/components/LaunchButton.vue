@@ -2,14 +2,17 @@
   <button class="LauchnBtn" v-on:click="LaunchActivity">
     {{ launchButtonText }}
   </button>
-  <button v-if="isActiveActivity" v-on:click="scanNFC = true">
-    Changer d'activité ?
-  </button>
-  <modal-nfc :scanNFC="scanNFC" @NFCReaded="NFCReaded"></modal-nfc>
+  <stylax-button
+    v-if="isActiveActivity"
+    v-on:click="scanNFC = true"
+    :showText="'Changer d\'activité ?'"
+  ></stylax-button>
+  <nfc-modal :scanNFC="scanNFC" @NFCReaded="NFCReaded"></nfc-modal>
 </template>
 
 <script>
 import StorageService from "../services/StorageService.js";
+import StylaxButton from "./StylaxButton";
 import ModalNfc from "./ModalNfc.vue";
 
 export default {
