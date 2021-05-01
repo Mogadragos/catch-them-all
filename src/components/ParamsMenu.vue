@@ -1,13 +1,18 @@
 <template>
   <transition name="topSlider">
-    <section v-show="show" v-on:click.self="$emit('Close')" :style="cssVars" class="params-menu">
+    <section
+      v-show="show"
+      v-on:click.self="$emit('Close')"
+      :style="cssVars"
+      class="params-menu"
+    >
       <section class="params-menu-body">
         <div class="params-menu-el">
           <button
             v-on:click="
               askLogin = !askLogin;
               askMail = false;
-              askResetGame = false;
+              askResetActivity = false;
             "
           >
             <span>Admin</span>
@@ -37,7 +42,7 @@
             v-on:click="
               askLogin = false;
               askMail = !askMail;
-              askResetGame = false;
+              askResetActivity = false;
             "
           >
             <span>Mail</span>
@@ -59,21 +64,21 @@
             v-on:click="
               askLogin = false;
               askMail = false;
-              askResetGame = !askResetGame;
+              askResetActivity = !askResetActivity;
             "
           >
-            <span>Reset Game</span>
+            <span>Réinitialiser l'activité</span>
             <img
-              v-if="askResetGame"
+              v-if="askResetActivity"
               src="../assets/img/arrow_up.png"
               alt="Déplié"
             />
             <img v-else src="../assets/img/arrow_down.png" alt="Replié" />
           </button>
           <transition name="buttonSlider">
-            <div v-if="askResetGame" class="params-menu-sub-el">
-              <button v-on:click="askResetGame = false">Annuler</button>
-              <button>Reset</button>
+            <div v-if="askResetActivity" class="params-menu-sub-el">
+              <button v-on:click="askResetActivity = false">Annuler</button>
+              <button v-on:click="ResetActivity">Réinitialiser</button>
             </div>
           </transition>
         </div>
@@ -84,13 +89,15 @@
 </template>
 
 <script>
+import StorageService from "../services/StorageService.js";
+
 export default {
   emits: ["Close"],
   data() {
     return {
       askLogin: false,
       askMail: false,
-      askResetGame: false,
+      askResetActivity: false,
       connexionCode: "",
     };
   },
@@ -106,6 +113,12 @@ export default {
       return {
         "--transition-time": this.transitionTime,
       };
+    },
+  },
+  methods: {
+    ResetActivity() {
+      StorageService.reset();
+      document.location.reload();
     },
   },
 };

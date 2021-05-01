@@ -40,6 +40,7 @@ class StorageService {
 
   confirmActiveActivity() {
     this.activity = this.temp_activity;
+    delete this.temp_activity;
     this.active_chips = JSON.parse(localStorage.active_chips);
   }
 
@@ -60,11 +61,20 @@ class StorageService {
           throw new Error("Cette puce ne fait pas partie de votre parcours !");
         }
       } else {
-        throw new Error("Pour recommencer votre parcours, rendez-vous dans les paramètres !");
+        throw new Error(
+          "Pour recommencer votre parcours, rendez-vous dans les paramètres !"
+        );
       }
     } else {
       throw new Error("Commencez une activité avant de jouer !");
     }
+  }
+
+  /**
+   * Reset de la mémoire
+   */
+  reset() {
+    localStorage.clear();
   }
 }
 
