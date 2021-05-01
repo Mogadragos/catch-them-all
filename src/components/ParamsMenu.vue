@@ -1,6 +1,6 @@
 <template>
   <transition name="topSlider">
-    <section v-show="show" :style="cssVars" class="params-menu">
+    <section v-show="show" v-on:click.self="$emit('Close')" :style="cssVars" class="params-menu">
       <section class="params-menu-body">
         <div class="params-menu-el">
           <button
@@ -19,7 +19,11 @@
             <img v-else src="../assets/img/arrow_down.png" alt="Replié" />
           </button>
           <transition name="buttonSlider">
-            <form v-if="askLogin" v-on:submit.prevent class="params-menu-sub-el">
+            <form
+              v-if="askLogin"
+              v-on:submit.prevent
+              class="params-menu-sub-el"
+            >
               <div class="fields-div">
                 <label for="code">Code de connexion</label>
                 <input id="code" type="text" v-model="connexionCode" />
@@ -81,6 +85,7 @@
 
 <script>
 export default {
+  emits: ["Close"],
   data() {
     return {
       askLogin: false,
