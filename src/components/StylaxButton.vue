@@ -1,5 +1,5 @@
 <template>
-    <button class="stylaxBtn"> {{ showText }}</button>
+    <button class="stylaxBtn">{{ showText }}</button>
 </template>
 
 <script>
