@@ -49,7 +49,11 @@ export default {
     },
     NFCReaded(data) {
       this.scanNFC = false;
-      console.log(data);
+      if (data) {
+        console.log(data);
+      } else {
+        alert("Impossible de lire le contenu du Tag NFC.");
+      }
     },
   },
 };

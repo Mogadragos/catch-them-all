@@ -1,7 +1,10 @@
 <template>
   <modal :show="scanNFC" :isFooter="false">
     <template v-slot:body>
-      <div class="lds-ripple"><div></div><div></div></div>
+      <div class="lds-ripple">
+        <div></div>
+        <div></div>
+      </div>
     </template>
   </modal>
 </template>
@@ -19,9 +22,14 @@ export default {
     this.$watch("scanNFC", (newVal) => {
       if (newVal) {
         this.data = "scan";
-        NFCService.Read().then((data) => {
-          this.$emit("NFCReaded", data);
-        });
+        NFCService.Read()
+          .then((data) => {
+            this.$emit("NFCReaded", data);
+          })
+          .catch((err) => {
+            console.error(err);
+            this.$emit("NFCReaded", false);
+          });
       }
     });
   },
@@ -43,7 +51,7 @@ export default {
   animation: lds-ripple 1.5s cubic-bezier(0, 0.2, 0.8, 1) infinite;
 }
 .lds-ripple div:nth-child(2) {
-  animation-delay: -.75s;
+  animation-delay: -0.75s;
 }
 @keyframes lds-ripple {
   0% {
