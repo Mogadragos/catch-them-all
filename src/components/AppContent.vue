@@ -50,6 +50,7 @@ export default {
       this.scanNFC = false;
       if (serial_number) {
         StorageService.setActivity(serial_number);
+        this.activityStart = true;
       } else {
         alert("Impossible de lire le contenu du Tag NFC.");
       }
