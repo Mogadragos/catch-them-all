@@ -1,13 +1,30 @@
 <template>
-  <button class="LauchnBtn">{{ text }}</button>
+  <button class="LauchnBtn" v-on:click="LaunchActivity">{{ text }}</button>
+  <button v-if="isActiveActivity" v-on:click="$emit('click', ScanNFC)">
+    Changer d'activité ?
+  </button>
 </template>
 
 <script>
 export default {
+  emits: ["ScanNFC", "LoadActive"],
   props: {
     text: {
       type: String,
       default: "LAUNCH",
+    },
+    isActiveActivity: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  methods: {
+    LaunchActivity() {
+      if (this.isActiveActivity) {
+        this.$emit("click", "LoadActive");
+      } else {
+        this.$emit("click", "ScanNFC");
+      }
     },
   },
 };
