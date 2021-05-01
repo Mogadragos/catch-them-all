@@ -8,18 +8,14 @@
 </template>
 
 <script>
-import ParamsMenu from "./ParamsMenu";
-
+import ParamsMenu from './ParamsMenu.vue';
 export default {
-  components: {
-    ParamsMenu,
-  },
+  components: { ParamsMenu },
   data() {
     return {
-      showSettings: false,
-    };
-  },
-};
+      showSettings: false
+    }
+  }};
 </script>
 
 <style scoped>
