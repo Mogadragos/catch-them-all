@@ -1,31 +1,57 @@
 <template>
-  <button class="LauchnBtn" v-on:click="LaunchActivity">{{ text }}</button>
-  <button v-if="isActiveActivity" v-on:click="$emit('ScanNFC')">
+  <button class="LauchnBtn" v-on:click="LaunchActivity">
+    {{ launchButtonText }}
+  </button>
+  <button v-if="isActiveActivity" v-on:click="scanNFC = true">
     Changer d'activité ?
   </button>
+  <nfc-modal :scanNFC="scanNFC" @NFCReaded="NFCReaded"></nfc-modal>
 </template>
 
 <script>
+import StorageService from "../services/StorageService.js";
+import NfcModal from "./ModalNfc.vue";
+
 export default {
-  emits: ["ScanNFC", "LoadActive"],
-  props: {
-    text: {
-      type: String,
-      default: "LAUNCH",
-    },
-    isActiveActivity: {
-      type: Boolean,
-      default: false,
-    },
+  emits: ["StartActivity"],
+  components: {
+    NfcModal,
+  },
+  data() {
+    return {
+      launchButtonText: "LAUNCH",
+      isActiveActivity: false,
+      scanNFC: false,
+    };
   },
   methods: {
     LaunchActivity() {
       if (this.isActiveActivity) {
-        this.$emit("LoadActive");
+        this.LoadActive();
       } else {
-        this.$emit("ScanNFC");
+        this.scanNFC = true;
       }
     },
+    LoadActive() {
+      StorageService.confirmActiveActivity();
+      this.$emit("StartActivity");
+    },
+    NFCReaded(serial_number) {
+      this.scanNFC = false;
+      if (serial_number) {
+        StorageService.setActivity(serial_number);
+        this.$emit("StartActivity");
+      } else {
+        alert("Impossible de lire le contenu du Tag NFC.");
+      }
+    },
+  },
+  mounted() {
+    const activityName = StorageService.isActiveActivity();
+    if (activityName !== "") {
+      this.launchButtonText = "Reprendre " + activityName;
+      this.isActiveActivity = true;
+    }
   },
 };
 </script>
