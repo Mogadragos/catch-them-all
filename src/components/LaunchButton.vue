@@ -37,10 +37,15 @@ export default {
       this.$emit("StartActivity");
     },
     NFCReaded(serial_number) {
+      console.log(serial_number);
       this.scanNFC = false;
       if (serial_number) {
-        StorageService.setActivity(serial_number);
-        this.$emit("StartActivity");
+        try {
+          StorageService.setActivity(serial_number);
+          this.$emit("StartActivity");
+        } catch (err) {
+          alert(err);
+        }
       } else {
         alert("Impossible de lire le contenu du Tag NFC.");
       }
