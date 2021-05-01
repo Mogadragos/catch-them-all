@@ -1,26 +1,34 @@
 <template>
-  <params-menu :show="showSettings" :transitionTime="transitionTime"></params-menu>
+  <params-menu
+    :show="showSettings"
+    :transitionTime="transitionTime"
+  ></params-menu>
   <header>
     <button v-on:click="toggleParams">
-      <img src="../assets/img/settings.svg" alt="Settings" :style="cssVars" v-bind:class="{ rotate : showSettings }"/>
+      <img
+        src="../assets/img/settings.svg"
+        alt="Settings"
+        :style="cssVars"
+        v-bind:class="{ rotate: showSettings }"
+      />
     </button>
   </header>
 </template>
 
 <script>
-import ParamsMenu from './ParamsMenu.vue';
+import ParamsMenu from "./ParamsMenu.vue";
 export default {
   components: { ParamsMenu },
   data() {
     return {
       showSettings: false,
-      transitionTime: ".5s"
-    }
+      transitionTime: ".5s",
+    };
   },
   methods: {
     toggleParams() {
       this.showSettings = !this.showSettings;
-    }
+    },
   },
   computed: {
     cssVars() {
@@ -28,7 +36,8 @@ export default {
         "--transition-time": this.transitionTime,
       };
     },
-  },};
+  },
+};
 </script>
 
 <style scoped>
