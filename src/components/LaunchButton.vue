@@ -1,6 +1,6 @@
 <template>
   <button class="LauchnBtn" v-on:click="LaunchActivity">{{ text }}</button>
-  <button v-if="isActiveActivity" v-on:click="$emit(ScanNFC)">
+  <button v-if="isActiveActivity" v-on:click="$emit('ScanNFC')">
     Changer d'activité ?
   </button>
 </template>
