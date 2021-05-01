@@ -39,7 +39,7 @@ export default {
   position: absolute;
   top: 50px;
   width: 100vw;
-  height: 100vh;
+  height: calc(100vh - 50px);
 }
 
 .params-menu-body {
@@ -64,7 +64,7 @@ export default {
     height: 0;
   }
   100% {
-    height: 100vh;
+    height: calc(100vh - 50px);
   }
 }
 </style>
