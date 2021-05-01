@@ -28,7 +28,7 @@ class StorageService {
   isActiveActivity() {
     if (localStorage.activity_id) {
       this.temp_activity = this.activities.filter(
-        (activity) => activity.start_chip_id === localStorage.activity_id
+        (activity) => activity.activity_id === localStorage.activity_id
       )[0];
       return this.temp_activity.name;
     } else {
