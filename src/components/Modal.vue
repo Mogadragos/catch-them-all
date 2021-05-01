@@ -8,9 +8,8 @@
 
         <div v-if="isFooter" class="modal-footer">
           <slot name="footer">
-            default footer
-            <button class="modal-default-button" v-on:click="$emit('close')">
-              OK
+            <button class="modal-close-button" v-on:click="$emit('close')">
+              {{ closeText }}
             </button>
           </slot>
         </div>
@@ -31,6 +30,10 @@ export default {
       type: Number,
       default: 9999,
     },
+    closeText: {
+      type: String,
+      default: "Fermer",
+    }
   },
   computed: {
     cssVars() {
@@ -73,8 +76,13 @@ export default {
   align-items: center;
 }
 
-.modal-default-button {
-  float: right;
+.modal-footer {
+  width: 100%;
+}
+
+.modal-close-button {
+  display: block;
+  margin: auto;
 }
 
 /* Transitions (vueJS) */

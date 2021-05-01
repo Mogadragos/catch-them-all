@@ -64,7 +64,7 @@ class StorageService {
         throw new Error("Cette puce ne fait pas partie de votre parcours !");
       }
     } else {
-      throw new Error("Set activity before discover new chip");
+      throw new Error("Commencez une activité avant de jouer !");
     }
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <modal :show="scanNFC" :isFooter="false">
+  <modal :show="scanNFC" :isFooter="canCancel" :closeText="'Annuler'" @close="stopScan = true">
     <template v-slot:body>
       <div class="lds-ripple">
         <div></div>
@@ -17,6 +17,12 @@ export default {
   components: { Modal },
   props: {
     scanNFC: Boolean,
+    canCancel: Boolean
+  },
+  data() {
+    return {
+      stopScan: false,
+    };
   },
   created() {
     this.$watch("scanNFC", (newVal) => {
@@ -24,7 +30,11 @@ export default {
         this.data = "scan";
         NFCService.Read()
           .then((data) => {
-            this.$emit("NFCReaded", data);
+            if(this.stopScan) {
+              this.$emit("close");
+            } else {
+              this.$emit("NFCReaded", data);
+            }
           })
           .catch((err) => {
             console.error(err);
