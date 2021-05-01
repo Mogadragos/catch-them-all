@@ -27,14 +27,15 @@ export default {
   },
   data() {
     return {
-      NfcChecked: false,
-      NfcActive: false,
+      NfcChecked: true,
+      NfcActive: true,
     };
   },
   mounted() {
     NFCService.Check().then((NfcActive) => {
-      this.NfcChecked = true;
-      this.NfcActive = NfcActive;
+      console.log(NfcActive);
+      //this.NfcChecked = true;
+      //this.NfcActive = NfcActive;
     });
   },
 };

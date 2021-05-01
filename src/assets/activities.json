@@ -1,36 +1,36 @@
-{
-    "10" : {
-        "start_chip_id": "10",
-        "activity_id": "1",
-        "name" : "",
-        "chips" : {
-            "1" : {
-                "id" : "1",
-                "label": "Puce 1",
-                "link": "www.google.com",
-                "location": {
-                    "latitude" : 45.748,
-                    "longitude" : 4.85
-                }
-            },
-            "2" : {
-                "id" : "2",
-                "label": "Puce 2",
-                "link": "www.google.com",
-                "location": {
-                    "latitude" : 45.758,
-                    "longitude" : 4.85
-                }
-            },
-            "3" : {
-                "id" : "3",
-                "label": "Puce 3",
-                "link": "www.google.com",
-                "location": {
-                    "latitude" : 45.738,
-                    "longitude" : 4.85
-                }
-            }
+[
+  {
+    "activity_id": "1",
+    "start_chip_id": "10",
+    "name": "Activité 1",
+    "chips": [
+      {
+        "id": "1",
+        "label": "Puce 1",
+        "link": "www.google.com",
+        "location": {
+          "latitude": 45.748,
+          "longitude": 4.85
         }
-    }
-}
+      },
+      {
+        "id": "2",
+        "label": "Puce 2",
+        "link": "www.google.com",
+        "location": {
+          "latitude": 45.758,
+          "longitude": 4.85
+        }
+      },
+      {
+        "id": "3",
+        "label": "Puce 3",
+        "link": "www.google.com",
+        "location": {
+          "latitude": 45.738,
+          "longitude": 4.85
+        }
+      }
+    ]
+  }
+]
