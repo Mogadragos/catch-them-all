@@ -1,13 +1,21 @@
 <template>
+  <params-menu :show="showSettings"></params-menu>
   <header>
-    <button v-on:click="$emit('openSettings')">
+    <button v-on:click="showSettings = !showSettings">
       <img src="../assets/img/settings.svg" alt="Settings" />
     </button>
   </header>
 </template>
 
 <script>
-export default {};
+import ParamsMenu from './ParamsMenu.vue';
+export default {
+  components: { ParamsMenu },
+  data() {
+    return {
+      showSettings: false
+    }
+  }};
 </script>
 
 <style scoped>
