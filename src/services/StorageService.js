@@ -11,15 +11,20 @@ class StorageService {
    * @param {string} startChipId
    */
   setActivity(start_chip_id) {
-    this.activity = this.activities.filter(
+    const activity = this.activities.filter(
       (activity) => activity.start_chip_id === start_chip_id
-    )[0];
-    localStorage.activity_id = this.activity.activity_id;
+    );
+    if (activity.length > 0) {
+      this.activity = activity[0];
+      localStorage.activity_id = this.activity.activity_id;
 
-    this.active_chips = [];
-    localStorage.active_chips = JSON.stringify([]);
+      this.active_chips = [];
+      localStorage.active_chips = JSON.stringify([]);
 
-    this.activity_is_set = true;
+      this.activity_is_set = true;
+    } else {
+      throw new Error("Cette puce n'est pas une puce de départ !");
+    }
   }
 
   /**
@@ -49,8 +54,15 @@ class StorageService {
    */
   discoverChip(chip_id) {
     if (this.activity_is_set) {
-      this.active_chips.push(chip_id);
-      localStorage.active_chips = JSON.parse(this.active_chips);
+      const chipData = this.activity.chips.filter(
+        (chip) => chip.id === chip_id
+      );
+      if (chipData.length > 0) {
+        this.active_chips.push(chip_id);
+        localStorage.active_chips = JSON.parse(this.active_chips);
+      } else {
+        throw new Error("Cette puce ne fait pas partie de votre parcours !");
+      }
     } else {
       throw new Error("Set activity before discover new chip");
     }
