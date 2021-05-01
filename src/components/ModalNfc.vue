@@ -1,5 +1,10 @@
 <template>
-  <modal :show="scanNFC" :isFooter="canCancel" :closeText="'Annuler'" @close="stopScan = true">
+  <modal
+    :show="scanNFC"
+    :isHeader="canCancel"
+    :closeText="'Annuler'"
+    @close="stopScan = true"
+  >
     <template v-slot:body>
       <div class="lds-ripple">
         <div></div>
@@ -14,10 +19,11 @@ import NFCService from "../services/NFCService.ts";
 import Modal from "./Modal.vue";
 
 export default {
+  emits: ["NFCReaded"],
   components: { Modal },
   props: {
     scanNFC: Boolean,
-    canCancel: Boolean
+    canCancel: Boolean,
   },
   data() {
     return {
@@ -30,7 +36,7 @@ export default {
         this.data = "scan";
         NFCService.Read()
           .then((data) => {
-            if(this.stopScan) {
+            if (this.stopScan) {
               this.$emit("close");
             } else {
               this.$emit("NFCReaded", data);

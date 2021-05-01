@@ -50,13 +50,16 @@ class StorageService {
    */
   discoverChip(chip_id) {
     if (this.activity) {
-      if (this.activity.start_chip_id === chip_id) {
+      if (this.activity.start_chip_id !== chip_id) {
         const chipData = this.activity.chips.filter(
           (chip) => chip.id === chip_id
         );
         if (chipData.length > 0) {
-          this.active_chips.push(chip_id);
-          localStorage.active_chips = JSON.parse(this.active_chips);
+          if(!this.active_chips.includes(chip_id)) {
+            this.active_chips.push(chip_id);
+            localStorage.active_chips = JSON.stringify(this.active_chips);
+          }
+          //TODO: display chip data
         } else {
           throw new Error("Cette puce ne fait pas partie de votre parcours !");
         }
@@ -68,6 +71,13 @@ class StorageService {
     } else {
       throw new Error("Commencez une activité avant de jouer !");
     }
+  }
+
+  /**
+   * Récupération de toutes les puces actives
+   */
+  getActiveChips() {
+    return this.activity.chips.filter(chip => this.active_chips.includes(chip.id));
   }
 
   /**
