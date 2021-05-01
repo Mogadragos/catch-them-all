@@ -15,20 +15,25 @@ class NFCService {
 
   async Read() {
     if ("NDEFReader" in window) {
-      // @ts-ignore
-      const ndef = new NDEFReader(); // obj for interaction with NFC
       return new Promise((resolve, reject) => {
-        const ctlr = new AbortController();
-        ctlr.signal.onabort = reject;
+        // @ts-ignore
+        const ndef = new NDEFReader(); // obj for interaction with NFC
         ndef.addEventListener(
           "reading",
-          (event) => {
-            ctlr.abort();
-            resolve(event);
+          ({ message, serialNumber }) => {
+            console.log("lecture ok")
+            console.log(serialNumber)
+            console.log(message.records.length)
+            console.log(message)
+            resolve(serialNumber);
           },
           { once: true }
         );
-        ndef.scan({ signal: ctlr.signal }).catch((err) => reject(err));
+        ndef.addEventListener("readingerror", () => {
+          console.error("Impossible de lire le TAG");
+          reject("Impossible de lire le TAG");
+        });
+        ndef.scan();
       });
     }
   }
