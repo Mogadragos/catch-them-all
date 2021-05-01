@@ -1,6 +1,6 @@
 <template>
   <transition name="topSlider">
-    <section v-show="show" class="params-menu">
+    <section v-show="show" :style="cssVars" class="params-menu">
       <section class="params-menu-body">
         <button>A</button>
         <button>B</button>
@@ -16,6 +16,17 @@
 export default {
   props: {
     show: Boolean,
+    transitionTime: {
+      type: String,
+      default: "0.5s",
+    },
+  },
+  computed: {
+    cssVars() {
+      return {
+        "--transition-time": this.transitionTime,
+      };
+    },
   },
 };
 </script>
@@ -43,10 +54,10 @@ export default {
 /* Transitions (vueJS) */
 
 .topSlider-enter-active {
-  animation: show-in 0.5s;
+  animation: show-in var(--transition-time) ease-in;
 }
 .topSlider-leave-active {
-  animation: show-in 0.5s reverse;
+  animation: show-in var(--transition-time) ease-in reverse;
 }
 @keyframes show-in {
   0% {
