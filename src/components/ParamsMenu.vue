@@ -2,11 +2,78 @@
   <transition name="topSlider">
     <section v-show="show" :style="cssVars" class="params-menu">
       <section class="params-menu-body">
-        <button>A</button>
-        <button>B</button>
-        <button>C</button>
-        <button>D</button>
-        <button>E</button>
+        <div class="params-menu-el">
+          <button
+            v-on:click="
+              askLogin = !askLogin;
+              askMail = false;
+              askResetGame = false;
+            "
+          >
+            <span>Admin</span>
+            <img
+              v-if="askLogin"
+              src="../assets/img/arrow_up.png"
+              alt="Déplié"
+            />
+            <img v-else src="../assets/img/arrow_down.png" alt="Replié" />
+          </button>
+          <transition name="buttonSlider">
+            <form v-if="askLogin" v-on:submit.prevent class="params-menu-sub-el">
+              <div class="fields-div">
+                <label for="code">Code de connexion</label>
+                <input id="code" type="text" v-model="connexionCode" />
+              </div>
+              <button>Connexion</button>
+            </form>
+          </transition>
+        </div>
+        <div class="params-menu-el">
+          <button
+            v-on:click="
+              askLogin = false;
+              askMail = !askMail;
+              askResetGame = false;
+            "
+          >
+            <span>Mail</span>
+            <img v-if="askMail" src="../assets/img/arrow_up.png" alt="Déplié" />
+            <img v-else src="../assets/img/arrow_down.png" alt="Replié" />
+          </button>
+          <transition name="buttonSlider">
+            <form v-if="askMail" v-on:submit.prevent class="params-menu-sub-el">
+              <div class="fields-div">
+                <label for="email">Email</label>
+                <input id="email" type="text" />
+              </div>
+              <button>Envoyer données</button>
+            </form>
+          </transition>
+        </div>
+        <div class="params-menu-el">
+          <button
+            v-on:click="
+              askLogin = false;
+              askMail = false;
+              askResetGame = !askResetGame;
+            "
+          >
+            <span>Reset Game</span>
+            <img
+              v-if="askResetGame"
+              src="../assets/img/arrow_up.png"
+              alt="Déplié"
+            />
+            <img v-else src="../assets/img/arrow_down.png" alt="Replié" />
+          </button>
+          <transition name="buttonSlider">
+            <div v-if="askResetGame" class="params-menu-sub-el">
+              <button v-on:click="askResetGame = false">Annuler</button>
+              <button>Reset</button>
+            </div>
+          </transition>
+        </div>
+        <div class="params-menu-el"><button>Crédits</button></div>
       </section>
     </section>
   </transition>
@@ -14,6 +81,14 @@
 
 <script>
 export default {
+  data() {
+    return {
+      askLogin: false,
+      askMail: false,
+      askResetGame: false,
+      connexionCode: "",
+    };
+  },
   props: {
     show: Boolean,
     transitionTime: {
@@ -34,8 +109,6 @@ export default {
 <style>
 .params-menu {
   overflow: hidden;
-  display: flex;
-  justify-content: center;
   position: absolute;
   top: 50px;
   width: 100vw;
@@ -43,12 +116,56 @@ export default {
 }
 
 .params-menu-body {
+  overflow: hidden;
+  margin-left: auto;
   width: 80%;
-  height: 90%;
+}
+
+.params-menu-el {
+  width: 100%;
+}
+
+.params-menu-el > button {
+  width: 100%;
+}
+
+.params-menu-el button {
+  background: linear-gradient(
+      to right,
+      rgba(121, 103, 9, 0.2),
+      rgba(121, 103, 9, 0.8)
+    ),
+    linear-gradient(white, white);
+  height: 60px;
+  font-size: 1em;
+  border: none;
+  cursor: pointer;
+}
+
+.params-menu-el > button > span {
+  margin-right: 1em;
+  margin-left: 1em;
+}
+
+.params-menu-sub-el {
+  overflow: hidden;
+  width: 100%;
+  display: flex;
+}
+
+.params-menu-sub-el > * {
+  width: 50%;
+}
+
+.fields-div {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
+}
+
+.fields-div > input {
+  width: 90%;
 }
 
 /* Transitions (vueJS) */
@@ -65,6 +182,21 @@ export default {
   }
   100% {
     height: calc(100vh - 50px);
+  }
+}
+
+.buttonSlider-enter-active {
+  animation: grow-button 0.2s linear;
+}
+.buttonSlider-leave-active {
+  animation: grow-button 0.2s linear reverse;
+}
+@keyframes grow-button {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: 60px;
   }
 }
 </style>
