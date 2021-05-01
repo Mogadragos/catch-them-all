@@ -5,17 +5,17 @@
   <button v-if="isActiveActivity" v-on:click="scanNFC = true">
     Changer d'activité ?
   </button>
-  <nfc-modal :scanNFC="scanNFC" @NFCReaded="NFCReaded"></nfc-modal>
+  <modal-nfc :scanNFC="scanNFC" @NFCReaded="NFCReaded"></modal-nfc>
 </template>
 
 <script>
 import StorageService from "../services/StorageService.js";
-import NfcModal from "./ModalNfc.vue";
+import ModalNfc from "./ModalNfc.vue";
 
 export default {
   emits: ["StartActivity"],
   components: {
-    NfcModal,
+    ModalNfc,
   },
   data() {
     return {

@@ -49,10 +49,17 @@ class StorageService {
    */
   discoverChip(chip_id) {
     if (this.activity_is_set) {
-      this.active_chips.push(chip_id);
-      localStorage.active_chips = JSON.parse(this.active_chips);
+      const chipData = this.activity.chips.filter(
+        (chip) => chip.id === chip_id
+      );
+      if(chipData.length > 0) {
+        this.active_chips.push(chip_id);
+        localStorage.active_chips = JSON.parse(this.active_chips);
+      } else {
+        throw new Error("Cette puce ne fait pas partie de votre parcours !");
+      }
     } else {
-      throw new Error("Set activity before discover new chip");
+      throw new Error("Commencez une activité avant de jouer !");
     }
   }
 }

@@ -1,17 +1,17 @@
 <template>
-    <button class="stylaxBtn"> {{ showText }}</button>
+  <button class="stylaxBtn">{{ showText }}</button>
 </template>
 
 <script>
 export default {
-    props : {
-        showText : String,
-    }
-}
+  props: {
+    showText: String,
+  },
+};
 </script>
 
 <style>
-.stylaxBtn{
+.stylaxBtn {
   align-self: center;
   padding: 20px 100px 18px 100px;
   color: white;
@@ -26,12 +26,7 @@ export default {
   cursor: pointer;
 }
 
-.stylaxBtn:hover{
- background: #E03A3A;
-}
-
-.stylaxBtn:active{
+.stylaxBtn:active {
   transform: scale(1.025);
 }
-
 </style>
