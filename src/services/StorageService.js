@@ -3,7 +3,6 @@ import data from "../assets/activities.json";
 class StorageService {
   constructor() {
     this.activities = data;
-    this.activity_is_set = false;
   }
 
   /**
@@ -20,8 +19,6 @@ class StorageService {
 
       this.active_chips = [];
       localStorage.active_chips = JSON.stringify([]);
-
-      this.activity_is_set = true;
     } else {
       throw new Error("Cette puce n'est pas une puce de départ !");
     }
@@ -44,8 +41,6 @@ class StorageService {
   confirmActiveActivity() {
     this.activity = this.temp_activity;
     this.active_chips = JSON.parse(localStorage.active_chips);
-
-    this.activity_is_set = true;
   }
 
   /**
@@ -53,15 +48,19 @@ class StorageService {
    * @param {string} chip_id
    */
   discoverChip(chip_id) {
-    if (this.activity_is_set) {
-      const chipData = this.activity.chips.filter(
-        (chip) => chip.id === chip_id
-      );
-      if (chipData.length > 0) {
-        this.active_chips.push(chip_id);
-        localStorage.active_chips = JSON.parse(this.active_chips);
+    if (this.activity) {
+      if (this.activity.start_chip_id === chip_id) {
+        const chipData = this.activity.chips.filter(
+          (chip) => chip.id === chip_id
+        );
+        if (chipData.length > 0) {
+          this.active_chips.push(chip_id);
+          localStorage.active_chips = JSON.parse(this.active_chips);
+        } else {
+          throw new Error("Cette puce ne fait pas partie de votre parcours !");
+        }
       } else {
-        throw new Error("Cette puce ne fait pas partie de votre parcours !");
+        throw new Error("Pour recommencer votre parcours, rendez-vous dans les paramètres !");
       }
     } else {
       throw new Error("Commencez une activité avant de jouer !");
