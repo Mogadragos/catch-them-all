@@ -1,6 +1,6 @@
 <template>
   <button class="LauchnBtn" v-on:click="LaunchActivity">{{ text }}</button>
-  <button v-if="isActiveActivity" v-on:click="$emit('click', ScanNFC)">
+  <button v-if="isActiveActivity" v-on:click="$emit(ScanNFC)">
     Changer d'activité ?
   </button>
 </template>
@@ -21,9 +21,9 @@ export default {
   methods: {
     LaunchActivity() {
       if (this.isActiveActivity) {
-        this.$emit("click", "LoadActive");
+        this.$emit("LoadActive");
       } else {
-        this.$emit("click", "ScanNFC");
+        this.$emit("ScanNFC");
       }
     },
   },
@@ -33,7 +33,6 @@ export default {
 <style>
 .LauchnBtn {
   border-radius: 50%;
-  position: relative;
   margin: 0;
   padding: 5px 12px;
   height: 300px;

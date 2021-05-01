@@ -6,7 +6,7 @@
           <slot name="body"> default body </slot>
         </div>
 
-        <div class="modal-footer">
+        <div v-if="isFooter" class="modal-footer">
           <slot name="footer">
             default footer
             <button class="modal-default-button" v-on:click="$emit('close')">
@@ -23,6 +23,10 @@
 export default {
   props: {
     show: Boolean,
+    isFooter: {
+      type: Boolean,
+      default: true,
+    },
     zIndex: {
       type: Number,
       default: 9999,
