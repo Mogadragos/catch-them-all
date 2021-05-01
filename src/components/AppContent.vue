@@ -1,7 +1,12 @@
 <template>
   <section id="main-content">
-    <launch-button :text="launchButtonText"></launch-button>
-    <button v-if="isActiveActivity">Changer d'activité ?</button>
+    <launch-button
+      v-if="!activityStart"
+      :text="launchButtonText"
+      :isActiveActivity="isActiveActivity"
+      @LoadActive="LoadActive"
+      @ScanNFC="ScanNFC"
+    ></launch-button>
   </section>
 </template>
 
@@ -17,7 +22,8 @@ export default {
   data() {
     return {
       launchButtonText: "LAUNCH",
-      isActiveActivity: false,
+      isActiveActivity: true,
+      activityStart: false,
     };
   },
   mounted() {
@@ -27,6 +33,15 @@ export default {
       this.isActiveActivity = true;
     }
   },
+  methods: {
+    LoadActive() {
+      StorageService.confirmActiveActivity();
+      this.activityStart = true;
+    },
+    ScanNFC() {
+      console.log("scan");
+    },
+  },
 };
 </script>
 
@@ -34,5 +49,9 @@ export default {
 #main-content {
   height: calc(100vh - 50px);
   width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 </style>

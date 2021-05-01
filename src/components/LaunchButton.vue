@@ -1,11 +1,33 @@
 <template>
-  <div class="center">
-    <button class="LauchnBtn">LAUCHN</button>
-  </div>
+  <button class="LauchnBtn" v-on:click="LaunchActivity">{{ text }}</button>
+  <button v-if="isActiveActivity" v-on:click="$emit('click', ScanNFC)">
+    Changer d'activité ?
+  </button>
 </template>
 
 <script>
-export default {};
+export default {
+  emits: ["ScanNFC", "LoadActive"],
+  props: {
+    text: {
+      type: String,
+      default: "LAUNCH",
+    },
+    isActiveActivity: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  methods: {
+    LaunchActivity() {
+      if (this.isActiveActivity) {
+        this.$emit("click", "LoadActive");
+      } else {
+        this.$emit("click", "ScanNFC");
+      }
+    },
+  },
+};
 </script>
 
 <style>
@@ -29,15 +51,7 @@ export default {};
   font-weight: 400;
   font-size: 20px;
   font-family: inherit;
-  z-index: 0;
   overflow: hidden;
   transition: all 0.3s cubic-bezier(0.02, 0.01, 0.47, 1);
-}
-
-.center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  align-self: center;
 }
 </style>
