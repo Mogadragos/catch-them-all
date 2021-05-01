@@ -70,9 +70,9 @@ export default {
   align-items: center;
   cursor: pointer;
   text-transform: uppercase;
-  background-color: #ffffff;
-  border: 1px solid rgba(22, 76, 167, 0.6);
-  color: #1d89ff;
+  background-color: #3071c7;
+  border: 1px solid rgba(27, 59, 129, 0.918);
+  color: #ffffff;
   font-weight: 400;
   font-size: 20px;
   font-family: inherit;

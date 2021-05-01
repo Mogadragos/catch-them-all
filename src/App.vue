@@ -1,4 +1,7 @@
 <template>
+  <head>
+    <link rel="manifest" href="./manifest.json">
+  </head>
   <header-help></header-help>
   <app-content v-if="NfcChecked && NfcActive"></app-content>
   <section v-else-if="NfcChecked">No NFC</section>
