@@ -20,18 +20,13 @@ class NFCService {
         const ndef = new NDEFReader(); // obj for interaction with NFC
         ndef.addEventListener(
           "reading",
-          ({ message, serialNumber }) => {
-            console.log("lecture ok")
-            console.log(serialNumber)
-            console.log(message.records.length)
-            console.log(message)
-            resolve(serialNumber);
+          (data) => {
+            resolve(data);
           },
           { once: true }
         );
         ndef.addEventListener("readingerror", () => {
-          console.error("Impossible de lire le TAG");
-          reject("Impossible de lire le TAG");
+          reject("Impossible de lire le Tag NFC");
         });
         ndef.scan();
       });
