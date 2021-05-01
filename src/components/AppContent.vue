@@ -8,22 +8,27 @@
       @ScanNFC="ScanNFC"
     ></launch-button>
   </section>
+  <section>
+    <nfc-modal :scanNFC="scanNFC" @NFCReaded="NFCReaded"></nfc-modal>
+  </section>
 </template>
 
 <script>
 import LaunchButton from "./LaunchButton.vue";
 import StorageService from "../services/StorageService.js";
-//import NFCService from "../services/NFCService.ts";
+import NfcModal from "./ModalNfc.vue";
 
 export default {
   components: {
     LaunchButton,
+    NfcModal,
   },
   data() {
     return {
       launchButtonText: "LAUNCH",
-      isActiveActivity: true,
+      isActiveActivity: false,
       activityStart: false,
+      scanNFC: false,
     };
   },
   mounted() {
@@ -40,6 +45,11 @@ export default {
     },
     ScanNFC() {
       console.log("scan");
+      this.scanNFC = true;
+    },
+    NFCReaded(data) {
+      this.scanNFC = false;
+      console.log(data);
     },
   },
 };

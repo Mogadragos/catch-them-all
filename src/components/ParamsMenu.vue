@@ -54,12 +54,12 @@ export default {
 /* Transitions (vueJS) */
 
 .topSlider-enter-active {
-  animation: show-in var(--transition-time) ease-in;
+  animation: grow var(--transition-time) ease-in;
 }
 .topSlider-leave-active {
-  animation: show-in var(--transition-time) ease-in reverse;
+  animation: grow var(--transition-time) ease-in reverse;
 }
-@keyframes show-in {
+@keyframes grow {
   0% {
     height: 0;
   }
