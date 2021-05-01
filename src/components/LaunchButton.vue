@@ -1,7 +1,5 @@
 <template>
-  <div class="center">
-    <button class="LauchnBtn">{{ text }}</button>
-  </div>
+  <button class="LauchnBtn">{{ text }}</button>
 </template>
 
 <script>
@@ -36,15 +34,7 @@ export default {
   font-weight: 400;
   font-size: 20px;
   font-family: inherit;
-  z-index: 0;
   overflow: hidden;
   transition: all 0.3s cubic-bezier(0.02, 0.01, 0.47, 1);
-}
-
-.center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  align-self: center;
 }
 </style>
