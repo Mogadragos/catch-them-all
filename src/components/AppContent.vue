@@ -1,15 +1,18 @@
 <template>
-  <header-help @openSettings="showSettingsModal = true"></header-help>
-  NFC {{ NfcActive ? "ok" : "pas ok" }}
+  <header-help></header-help>
+  <section id="main-content">
+    <section v-if="NfcActive">
+      NFC Ready
+      <launch-button></launch-button>
+    </section>
+    <section v-else>No NFC</section>
+  </section>
   <section>
     <modal
       :show="showSettingsModal"
       :zIndex="150"
       @close="showSettingsModal = false"
     >
-      <template v-slot:header>
-        <h3>custom header</h3>
-      </template>
     </modal>
   </section>
 </template>
@@ -17,11 +20,14 @@
 <script>
 import Modal from "./Modal";
 import HeaderHelp from "./HeaderHelp";
+import LaunchButton from "./LaunchButton.vue";
+//import NFCService from "../services/NFCService.ts";
 
 export default {
   components: {
     Modal,
     HeaderHelp,
+    LaunchButton,
   },
   props: {
     NfcActive: Boolean,
@@ -34,4 +40,9 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+#main-content {
+  height: calc(100vh - 50px);
+  width: 100vw;
+}
+</style>
