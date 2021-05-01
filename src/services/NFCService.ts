@@ -20,8 +20,8 @@ class NFCService {
         const ndef = new NDEFReader(); // obj for interaction with NFC
         ndef.addEventListener(
           "reading",
-          (data) => {
-            resolve(data);
+          ({ serialNumber }) => {
+            resolve(serialNumber);
           },
           { once: true }
         );

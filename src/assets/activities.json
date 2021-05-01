@@ -1,7 +1,7 @@
 [
   {
     "activity_id": "1",
-    "start_chip_id": "10",
+    "start_chip_id": "04:91:fd:30:10:02:89",
     "name": "Activité 1",
     "chips": [
       {

@@ -7,6 +7,7 @@
       @LoadActive="LoadActive"
       @ScanNFC="ScanNFC"
     ></launch-button>
+    {{ test }}
   </section>
   <section>
     <nfc-modal :scanNFC="scanNFC" @NFCReaded="NFCReaded"></nfc-modal>
@@ -29,6 +30,7 @@ export default {
       isActiveActivity: false,
       activityStart: false,
       scanNFC: false,
+      test: "ah !",
     };
   },
   mounted() {
@@ -44,13 +46,13 @@ export default {
       this.activityStart = true;
     },
     ScanNFC() {
-      console.log("scan");
       this.scanNFC = true;
     },
-    NFCReaded(data) {
+    NFCReaded(serial_number) {
       this.scanNFC = false;
-      if (data) {
-        console.log(data);
+      if (serial_number) {
+        this.test = serial_number;
+        StorageService.setActivity(serial_number);
       } else {
         alert("Impossible de lire le contenu du Tag NFC.");
       }
