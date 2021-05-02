@@ -27,8 +27,15 @@ export default {
   data() {
     return {
       location: "",
-      chips: StorageService.getUndiscoveredChips(),
+      chips: [],
     };
+  },
+  created() {
+    this.$watch("show", (newVal) => {
+      if (newVal) {
+        this.chips = StorageService.getUndiscoveredChips();
+      }
+    });
   },
   mounted() {
     GeolocService.watchLocation(this.locationCallback);
