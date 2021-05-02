@@ -20,7 +20,6 @@ import HeaderHelp from "./components/HeaderHelp";
 import AppContent from "./components/AppContent";
 import Modal from "./components/Modal";
 import NFCService from "./services/NFCService.ts";
-import Admin from "./components/Admin";
 
 export default {
   name: "App",
@@ -28,7 +27,6 @@ export default {
     HeaderHelp,
     AppContent,
     Modal,
-    Admin,
   },
   data() {
     return {
