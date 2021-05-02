@@ -2,9 +2,10 @@
   <params-menu
     :show="showSettings"
     :transitionTime="transitionTime"
+    @Close="showSettings = false"
   ></params-menu>
   <header>
-    <button v-on:click="toggleParams">
+    <button v-on:click="showSettings = !showSettings">
       <img
         src="../assets/img/settings.svg"
         alt="Settings"
@@ -24,11 +25,6 @@ export default {
       showSettings: false,
       transitionTime: ".5s",
     };
-  },
-  methods: {
-    toggleParams() {
-      this.showSettings = !this.showSettings;
-    },
   },
   computed: {
     cssVars() {

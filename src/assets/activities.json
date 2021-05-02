@@ -5,30 +5,30 @@
     "name": "Activité 1",
     "chips": [
       {
-        "id": "1",
+        "id": "04:2f:31:31:10:02:89",
         "label": "Puce 1",
-        "link": "www.google.com",
+        "link": "https://cdn.futura-sciences.com/buildsv6/images/largeoriginal/7/1/6/71655ac356_50166765_panda-ge-ant-naissance.jpg",
         "location": {
-          "latitude": 45.748,
-          "longitude": 4.85
+          "latitude": 45.6512748,
+          "longitude": 0.1576745
         }
       },
       {
         "id": "2",
         "label": "Puce 2",
-        "link": "www.google.com",
+        "link": "http://www.google.com",
         "location": {
-          "latitude": 45.758,
-          "longitude": 4.85
+          "latitude": 45.6512748,
+          "longitude": 0.1576745
         }
       },
       {
         "id": "3",
         "label": "Puce 3",
-        "link": "www.google.com",
+        "link": "http://www.google.com",
         "location": {
-          "latitude": 45.738,
-          "longitude": 4.85
+          "latitude": 45.6512748,
+          "longitude": 0.1576745
         }
       }
     ]

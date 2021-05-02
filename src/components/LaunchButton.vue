@@ -2,20 +2,24 @@
   <button class="LauchnBtn" v-on:click="LaunchActivity">
     {{ launchButtonText }}
   </button>
-  <button v-if="isActiveActivity" v-on:click="scanNFC = true">
-    Changer d'activité ?
-  </button>
-  <nfc-modal :scanNFC="scanNFC" @NFCReaded="NFCReaded"></nfc-modal>
+  <stylax-button
+    v-if="isActiveActivity"
+    v-on:click="scanNFC = true"
+    :showText="'Changer d\'activité ?'"
+  ></stylax-button>
+  <modal-nfc :scanNFC="scanNFC" @NFCReaded="NFCReaded"></modal-nfc>
 </template>
 
 <script>
 import StorageService from "../services/StorageService.js";
-import NfcModal from "./ModalNfc.vue";
+import StylaxButton from "./StylaxButton";
+import ModalNfc from "./ModalNfc.vue";
 
 export default {
   emits: ["StartActivity"],
   components: {
-    NfcModal,
+    StylaxButton,
+    ModalNfc,
   },
   data() {
     return {
@@ -37,10 +41,15 @@ export default {
       this.$emit("StartActivity");
     },
     NFCReaded(serial_number) {
+      console.log(serial_number);
       this.scanNFC = false;
       if (serial_number) {
-        StorageService.setActivity(serial_number);
-        this.$emit("StartActivity");
+        try {
+          StorageService.setActivity(serial_number);
+          this.$emit("StartActivity");
+        } catch (err) {
+          alert(err);
+        }
       } else {
         alert("Impossible de lire le contenu du Tag NFC.");
       }
@@ -59,7 +68,8 @@ export default {
 <style>
 .LauchnBtn {
   border-radius: 50%;
-  margin: 0;
+  margin-top: 50px;
+  margin-bottom: 50px;
   padding: 5px 12px;
   height: 300px;
   width: 300px;

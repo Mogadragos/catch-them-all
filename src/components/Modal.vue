@@ -1,18 +1,16 @@
 <template>
   <transition name="modal">
-    <div v-show="show" :style="cssVars" class="modal-mask">
+    <div v-if="show" :style="cssVars" class="modal-mask">
       <div class="modal-container">
-        <div class="modal-body">
-          <slot name="body"> default body </slot>
-        </div>
-
-        <div v-if="isFooter" class="modal-footer">
-          <slot name="footer">
-            default footer
-            <button class="modal-default-button" v-on:click="$emit('close')">
-              OK
+        <div v-if="isHeader" class="modal-header">
+          <slot name="header">
+            <button class="modal-close-button" v-on:click="$emit('close')">
+              {{ closeText }}
             </button>
           </slot>
+        </div>
+        <div class="modal-body">
+          <slot name="body"> default body </slot>
         </div>
       </div>
     </div>
@@ -23,7 +21,7 @@
 export default {
   props: {
     show: Boolean,
-    isFooter: {
+    isHeader: {
       type: Boolean,
       default: true,
     },
@@ -31,11 +29,35 @@ export default {
       type: Number,
       default: 9999,
     },
+    width: {
+      type: String,
+      default: "50%",
+    },
+    maxWidth: {
+      type: String,
+      default: "500px",
+    },
+    height: {
+      type: String,
+      default: "auto",
+    },
+    headerMarginY: {
+      type: String,
+      default: "0",
+    },
+    closeText: {
+      type: String,
+      default: "Fermer",
+    },
   },
   computed: {
     cssVars() {
       return {
         "--z-index": this.zIndex,
+        "--width": this.width,
+        "--max-width": this.maxWidth,
+        "--height": this.height,
+        "--header-margin-y": this.headerMarginY,
       };
     },
   },
@@ -56,8 +78,9 @@ export default {
 }
 
 .modal-container {
-  width: 50%;
-  max-width: 500px;
+  width: var(--width);
+  max-width: var(--max-width);
+  height: var(--height);
   margin: 0px auto;
   padding: 20px 30px;
   background-color: #fff;
@@ -68,13 +91,17 @@ export default {
 
 .modal-body {
   margin: 20px 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
-.modal-default-button {
-  float: right;
+.modal-header {
+  width: 100%;
+  margin-top: var(--header-margin-y);
+  margin-bottom: var(--header-margin-y);
+}
+
+.modal-close-button {
+  display: block;
+  margin-left: auto;
 }
 
 /* Transitions (vueJS) */

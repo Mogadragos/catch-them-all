@@ -4,15 +4,15 @@
 
 <script>
 export default {
-    props : {
-        showText : String,
-    }
-}
+  props: {
+    showText: String,
+  },
+};
 </script>
 
 <style>
-.stylaxBtn{
-  align-self: center;
+.stylaxBtn {
+  display: block;
   padding: 20px 100px 18px 100px;
   color: white;
   font-family: arial;
@@ -24,14 +24,11 @@ export default {
   border-radius: 10px;
   transition: all 0.1s ease-in-out;
   cursor: pointer;
+  margin-right: auto;
+  margin-left: auto;
 }
 
-.stylaxBtn:hover{
- background: #E03A3A;
-}
-
-.stylaxBtn:active{
+.stylaxBtn:active {
   transform: scale(1.025);
 }
-
 </style>
