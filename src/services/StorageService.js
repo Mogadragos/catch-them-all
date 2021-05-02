@@ -55,7 +55,7 @@ class StorageService {
           (chip) => chip.id === chip_id
         );
         if (chipData.length > 0) {
-          if(!this.active_chips.includes(chip_id)) {
+          if (!this.active_chips.includes(chip_id)) {
             this.active_chips.push(chip_id);
             localStorage.active_chips = JSON.stringify(this.active_chips);
           }
@@ -77,7 +77,18 @@ class StorageService {
    * Récupération de toutes les puces actives
    */
   getActiveChips() {
-    return this.activity.chips.filter(chip => this.active_chips.includes(chip.id));
+    return this.activity.chips.filter((chip) =>
+      this.active_chips.includes(chip.id)
+    );
+  }
+
+  /**
+   * Récupération de toutes les puces non découvertes
+   */
+  getUndiscoveredChips() {
+    return this.activity.chips.filter(
+      (chip) => !this.active_chips.includes(chip.id)
+    );
   }
 
   /**

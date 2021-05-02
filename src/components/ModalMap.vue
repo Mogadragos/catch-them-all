@@ -4,7 +4,9 @@
       <section id="map-section">
         <div class="radar"></div>
         <div>
-            
+          <div v-for="chip in chips" v-bind:key="chip.id">
+            {{ chip.label }} : {{ chip.distance }} mètres
+          </div>
         </div>
       </section>
     </template>
@@ -12,7 +14,8 @@
 </template>
 
 <script>
-//import NFCService from "../services/NFCService.ts";
+import GeolocService from "../services/GeolocService.js";
+import StorageService from "../services/StorageService.js";
 import Modal from "./Modal.vue";
 
 export default {
@@ -20,6 +23,23 @@ export default {
   components: { Modal },
   props: {
     show: Boolean,
+  },
+  data() {
+    return {
+      location: "",
+      chips: StorageService.getUndiscoveredChips(),
+    };
+  },
+  mounted() {
+    GeolocService.watchLocation(this.locationCallback);
+  },
+  methods: {
+    locationCallback(location) {
+      this.location = location.coords;
+      for (const chip of this.chips) {
+        chip.distance = Math.round(GeolocService.getDistanceFromLatLonInM(this.location, chip.location) * 100)/100;
+      }
+    },
   },
 };
 </script>
@@ -72,7 +92,9 @@ export default {
       #841413 50%,
       rgba(32, 255, 77, 0) 50.2%
     );
+  min-width: 150px;
   width: 150px;
+  min-height: 150px;
   height: 150px;
   border-radius: 50%;
   border: 1px solid #841413;
