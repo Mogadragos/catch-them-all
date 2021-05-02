@@ -24,7 +24,8 @@ export default {
   border-radius: 10px;
   transition: all 0.1s ease-in-out;
   cursor: pointer;
-  margin: auto;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .stylaxBtn:active {

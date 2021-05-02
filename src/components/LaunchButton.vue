@@ -7,7 +7,7 @@
     v-on:click="scanNFC = true"
     :showText="'Changer d\'activité ?'"
   ></stylax-button>
-  <nfc-modal :scanNFC="scanNFC" @NFCReaded="NFCReaded"></nfc-modal>
+  <modal-nfc :scanNFC="scanNFC" @NFCReaded="NFCReaded"></modal-nfc>
 </template>
 
 <script>
@@ -18,6 +18,7 @@ import ModalNfc from "./ModalNfc.vue";
 export default {
   emits: ["StartActivity"],
   components: {
+    StylaxButton,
     ModalNfc,
   },
   data() {
@@ -67,7 +68,8 @@ export default {
 <style>
 .LauchnBtn {
   border-radius: 50%;
-  margin: 0;
+  margin-top: 50px;
+  margin-bottom: 50px;
   padding: 5px 12px;
   height: 300px;
   width: 300px;
