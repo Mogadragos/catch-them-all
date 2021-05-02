@@ -1,6 +1,6 @@
 <template>
   <transition name="modal">
-    <div v-show="show" :style="cssVars" class="modal-mask">
+    <div v-if="show" :style="cssVars" class="modal-mask">
       <div class="modal-container">
         <div v-if="isHeader" class="modal-header">
           <slot name="header">
