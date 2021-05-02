@@ -1,0 +1,16 @@
+{
+    "name":"Name of app",
+    "short_name":"Name of app",
+    "start_url":"/src/App.vue",
+    "display":"standalone",
+    "background_color":"#ffffff",
+    "theme-color":"#ffffff",
+    "orientation":"portrait-primary",
+    "icons":[
+        {
+            "src" : "src/img/loupe.png",
+            "type" : "image/png",
+            "size" : "512x512"
+        }
+    ]
+}
