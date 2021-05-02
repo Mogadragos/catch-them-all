@@ -1,12 +1,24 @@
 # catch-them-all
 
+https://catch-them-all-nfc-pwa.netlify.app/
+
 ## Qu'est-ce que c'est ?
 
 Catch them all est un outil permettant d'ajouter une valorisation ludique à des événements tels que des portes ouvertes ou encore des visites, mais peut aussi être utiliser dans des jeux à part entière, comme des escape games ou des chasses au trésor.
 
 ## Comment ça marche ?
 
+Dans un premier temps l'utilisateur scan une puce NFC pour signifier le départ de la recherche des autres balise NFC.
+Pour rechercher ces balises, un "Radar" est à disposition qui indique la distance des balises les plus proches.
+Une fois une balise trouvée, il suffit de la scanner pour avoir l'information disponible.
+Pour recommencer une nouvelle recherchée sur une série de balises, il faut aller dans le menu paramètre et choisir l'option ' Réinitialiser l'activité. '
+Un menu libraire permet de revoir le contenue des balises trouver.
+
 ## L'avenir de Catch them all
+
+Un mode administrateur permettra de créer ses propres listes de contenu pour les puces NFC et de les injecter par la suite, lors de l'enregistrement, la position du téléphone est sauvegarder et ensuite associer à la puce.
+Une seconde amélioration est de mettre une carte géographique à disposition, permettant de voir les zones de recherche disponible, afin d'étendre la zone de jeu. Cette amélioration remplacera le système de radar.
+
 
 ## Documentation technique
 
