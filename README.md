@@ -1,6 +1,12 @@
 # catch-them-all
 
+Julien CAUILLAUD / Clément GOMEZ
+
 https://catch-them-all-nfc-pwa.netlify.app/
+
+## Disclaimer 
+
+Aucune compétence disponible dans le domaine graphique merci de votre compréhension.
 
 ## Qu'est-ce que c'est ?
 
