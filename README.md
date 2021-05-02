@@ -28,6 +28,10 @@ Une seconde amélioration est de mettre une carte géographique à disposition, 
 
 ## Documentation technique
 
+### Initialisation 
+
+Appuyer sur initialiser vos puces, cela permet d'associer les données au puces. Puis rafraichir la page.
+
 ### Components
 
 - ActivityContent
@@ -52,7 +56,7 @@ Une seconde amélioration est de mettre une carte géographique à disposition, 
 
 - Modal
 
-    Popup modulable, on peut faire varier son z-index ("couche d'affichage"), sa largeur, sa largeur max, sa hauteur, la présence d'un bouton de fermeture en haut, les marges verticales de son bouton de fermeture, et le texte du bouton de fermeture.
+    Popup modulable, on peut faire varier son z-index ("couche d'affichage"), sa largeur, sa largeur max, sa hauteur, la présence d'un bouton de fermeture en haut, les marges verticales de son bouton de fermeture, le texte du bouton de fermeture, et le titre de la modal.
 
 - ModalLibrary
 
