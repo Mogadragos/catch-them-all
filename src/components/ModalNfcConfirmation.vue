@@ -1,5 +1,5 @@
 <template>
-  <modal :show="chip" :isHeader="true" @close="$emit('close')">
+  <modal :show="chip !== null" :isHeader="true" @close="$emit('close')">
     <template v-slot:body>
       <div class="unique-chip">
         <h3>{{ chip.label }}</h3>
