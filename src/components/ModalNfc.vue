@@ -1,5 +1,6 @@
 <template>
   <modal
+    :title="title"
     :show="scanNFC"
     :isHeader="canCancel"
     :closeText="'Annuler'"
@@ -24,6 +25,13 @@ export default {
   props: {
     scanNFC: Boolean,
     canCancel: Boolean,
+    props: {
+      show: Boolean,
+      title: {
+        type: String,
+        default: ""
+      },
+    },
   },
   data() {
     return {
