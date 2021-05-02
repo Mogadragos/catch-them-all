@@ -1,6 +1,6 @@
 # catch-them-all
 
-Julien CAUILLAUD / Clément GOMEZ
+Julien CAILLAUD / Clément GOMEZ
 
 https://catch-them-all-nfc-pwa.netlify.app/
 
