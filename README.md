@@ -25,6 +25,7 @@ Un menu libraire permet de revoir le contenue des balises trouver.
 Un mode administrateur permettra de créer ses propres listes de contenu pour les puces NFC et de les injecter par la suite, lors de l'enregistrement, la position du téléphone est sauvegarder et ensuite associer à la puce. Les informations des puces seront enregistrées dans une base de données.
 Une seconde amélioration est de mettre une carte géographique à disposition, permettant de voir les zones de recherche disponible, afin d'étendre la zone de jeu. Cette amélioration remplacera le système de radar.
 Prévoir des récompenses pour avoir fini de trouver toutes les puces ou autre accomplissement.
+Interface Desktop pour afficher directement le management des puce NFC.
 
 
 ## Documentation technique
