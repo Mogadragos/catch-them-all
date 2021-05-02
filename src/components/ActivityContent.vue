@@ -1,10 +1,16 @@
 <template>
-<section class="h-33 title-section">
-  <h1>{{ name }}</h1>
-</section>
+  <section class="h-33 title-section">
+    <h1>{{ name }}</h1>
+  </section>
   <section class="h-33 buttons-section">
-    <stylax-button :showText="'Scan'" v-on:click="scanNFC = true"></stylax-button>
-    <stylax-button :showText="'Map'"></stylax-button>
+    <stylax-button
+      :showText="'Scan'"
+      v-on:click="scanNFC = true"
+    ></stylax-button>
+    <stylax-button
+      :showText="'Map'"
+      v-on:click="showMap = true"
+    ></stylax-button>
     <stylax-button
       :showText="'Bibliothèque'"
       v-on:click="showLibrary = true"
@@ -20,6 +26,11 @@
     :show="showLibrary"
     @close="showLibrary = false"
   ></modal-library>
+  <modal-map
+    :show="showMap"
+    :canCancel="true"
+    @close="showMap = false"
+  ></modal-map>
 </template>
 
 <script>
@@ -27,18 +38,21 @@ import StorageService from "../services/StorageService.js";
 import StylaxButton from "./StylaxButton";
 import ModalNfc from "./ModalNfc.vue";
 import ModalLibrary from "./ModalLibrary.vue";
+import ModalMap from "./ModalMap.vue";
 
 export default {
   components: {
     StylaxButton,
     ModalNfc,
     ModalLibrary,
+    ModalMap,
   },
   data() {
     return {
       clicked: "non",
       scanNFC: false,
       showLibrary: false,
+      showMap: false,
       name: StorageService.activity.name,
     };
   },
@@ -72,7 +86,7 @@ export default {
 
 .title-section > h1 {
   font-size: 2.2em;
-  text-shadow: 5px 5px 5px rgba(0, 0, 0, .20);
+  text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
 }
 
 .buttons-section {
