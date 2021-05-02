@@ -59,7 +59,6 @@ class StorageService {
             this.active_chips.push(chip_id);
             localStorage.active_chips = JSON.stringify(this.active_chips);
           }
-          //TODO: display chip data
         } else {
           throw new Error("Cette puce ne fait pas partie de votre parcours !");
         }
@@ -71,6 +70,10 @@ class StorageService {
     } else {
       throw new Error("Commencez une activité avant de jouer !");
     }
+  }
+
+  getChipData(chip_id) {
+    return this.activity.chips.filter((chip) => (chip.id = chip_id))[0];
   }
 
   /**

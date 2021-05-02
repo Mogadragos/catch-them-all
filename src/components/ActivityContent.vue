@@ -31,6 +31,10 @@
     :canCancel="true"
     @close="showMap = false"
   ></modal-map>
+  <modal-nfc-confirmation
+    :chip="displayedChip"
+    @close="displayedChip = null">
+  </modal-nfc-confirmation>
 </template>
 
 <script>
@@ -39,6 +43,7 @@ import StylaxButton from "./StylaxButton";
 import ModalNfc from "./ModalNfc.vue";
 import ModalLibrary from "./ModalLibrary.vue";
 import ModalMap from "./ModalMap.vue";
+import ModalNfcConfirmation from "./ModalNfcConfirmation.vue";
 
 export default {
   components: {
@@ -46,6 +51,7 @@ export default {
     ModalNfc,
     ModalLibrary,
     ModalMap,
+    ModalNfcConfirmation,
   },
   data() {
     return {
@@ -54,6 +60,7 @@ export default {
       showLibrary: false,
       showMap: false,
       name: StorageService.activity.name,
+      displayedChip: null,
     };
   },
   methods: {
@@ -62,7 +69,9 @@ export default {
       if (serial_number) {
         try {
           StorageService.discoverChip(serial_number);
+          this.displayedChip = StorageService.getChipData(serial_number);
         } catch (err) {
+          this.displayedChip = null;
           alert(err);
         }
       } else {
