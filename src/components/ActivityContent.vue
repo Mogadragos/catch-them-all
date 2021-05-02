@@ -4,11 +4,11 @@
   </section>
   <section class="h-33 buttons-section">
     <stylax-button
-      :showText="'Scan'"
+      :showText="'Scanner une puce'"
       v-on:click="scanNFC = true"
     ></stylax-button>
     <stylax-button
-      :showText="'Map'"
+      :showText="'Radar'"
       v-on:click="showMap = true"
     ></stylax-button>
     <stylax-button
