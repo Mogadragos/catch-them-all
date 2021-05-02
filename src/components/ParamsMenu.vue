@@ -15,7 +15,7 @@
               askResetActivity = false;
             "
           >
-            <span>Admin</span>
+            <span>Administration</span>
             <img
               v-if="askLogin"
               src="../assets/img/arrow_up.png"
@@ -45,7 +45,7 @@
               askResetActivity = false;
             "
           >
-            <span>Mail</span>
+            <span>Recevoir un mail</span>
             <img v-if="askMail" src="../assets/img/arrow_up.png" alt="Déplié" />
             <img v-else src="../assets/img/arrow_down.png" alt="Replié" />
           </button>
