@@ -1,8 +1,16 @@
-import data from "../assets/activities.json";
 
 class StorageService {
   constructor() {
-    this.activities = data;
+    this.activities = [];
+  }
+
+  saveStartChip(activity) {
+    this.activity = activity;
+    this.activity.chips = [];
+  }
+
+  saveChip(chip) {
+    this.activity.chips.push(chip);
   }
 
   /**
@@ -10,11 +18,7 @@ class StorageService {
    * @param {string} startChipId
    */
   setActivity(start_chip_id) {
-    const activity = this.activities.filter(
-      (activity) => activity.start_chip_id === start_chip_id
-    );
-    if (activity.length > 0) {
-      this.activity = activity[0];
+    if (this.activity && this.activity.start_chip_id === start_chip_id) {
       localStorage.activity_id = this.activity.activity_id;
 
       this.active_chips = [];
@@ -28,19 +32,14 @@ class StorageService {
    * Récupération du titre de l'activité en cours si elle existe
    */
   isActiveActivity() {
-    if (localStorage.activity_id) {
-      this.temp_activity = this.activities.filter(
-        (activity) => activity.activity_id === localStorage.activity_id
-      )[0];
-      return this.temp_activity.name;
+    if (localStorage.activity_id && this.activity.activity_id === localStorage.activity_id) {
+      return this.activity.name;
     } else {
       return "";
     }
   }
 
   confirmActiveActivity() {
-    this.activity = this.temp_activity;
-    delete this.temp_activity;
     this.active_chips = JSON.parse(localStorage.active_chips);
   }
 
@@ -102,6 +101,7 @@ class StorageService {
    */
   reset() {
     localStorage.clear();
+    document.location.reload();
   }
 }
 
