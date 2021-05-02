@@ -55,10 +55,13 @@ class StorageService {
           (chip) => chip.id === chip_id
         );
         if (chipData.length > 0) {
+          console.log(this.active_chips);
+          console.log(chip_id);
           if (!this.active_chips.includes(chip_id)) {
             this.active_chips.push(chip_id);
             localStorage.active_chips = JSON.stringify(this.active_chips);
           }
+          console.log(this.active_chips);
         } else {
           throw new Error("Cette puce ne fait pas partie de votre parcours !");
         }
@@ -73,7 +76,7 @@ class StorageService {
   }
 
   getChipData(chip_id) {
-    return this.activity.chips.filter((chip) => (chip.id = chip_id))[0];
+    return this.activity.chips.filter((chip) => (chip.id === chip_id))[0];
   }
 
   /**
