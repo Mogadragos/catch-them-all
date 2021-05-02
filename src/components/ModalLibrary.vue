@@ -9,7 +9,8 @@
     @close="$emit('close')"
   >
     <template v-slot:body>
-      <div class="chip" v-for="chip in activeChips" v-bind:key="chip.id">
+      <div v-if="activeChips.length === 0">Vous n'avez découvert aucune puce pour le moment !</div>
+      <div v-else class="chip" v-for="chip in activeChips" v-bind:key="chip.id">
         <h3>{{ chip.label }}</h3>
         <img v-if="!chip.imgError" v-bind:src="chip.link" v-bind:alt="chip.label" v-on:error="chip.imgError = true"/>
         <a v-else v-bind:href="chip.link">{{ chip.link }}</a>
