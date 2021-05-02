@@ -4,6 +4,7 @@
       <div class="modal-container">
         <div v-if="isHeader" class="modal-header">
           <slot name="header">
+            {{ title }}
             <button class="modal-close-button" v-on:click="$emit('close')">
               {{ closeText }}
             </button>
@@ -21,6 +22,10 @@
 export default {
   props: {
     show: Boolean,
+    title: {
+      type: String,
+      default: "",
+    },
     isHeader: {
       type: Boolean,
       default: true,

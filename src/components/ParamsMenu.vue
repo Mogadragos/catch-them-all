@@ -118,7 +118,6 @@ export default {
   methods: {
     ResetActivity() {
       StorageService.reset();
-      document.location.reload();
     },
   },
 };

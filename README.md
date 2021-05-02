@@ -1,6 +1,6 @@
 # catch-them-all
 
-Julien CAUILLAUD / Clément GOMEZ
+Julien CAILLAUD / Clément GOMEZ
 
 https://catch-them-all-nfc-pwa.netlify.app/
 
@@ -92,11 +92,16 @@ Appuyer sur initialiser vos puces, cela permet d'associer les données au puces.
 
 - GeolocService
 
-    Gestion de la localisation 
+    Gestion de la localisation et calcul des distances
 
 - NFCService
 
+    Lecture des puces NFC
+
 - StorageService
+
+    Sauvegarde des puces, association avec les données et vérification lors de la lecture.
+    WIP: utiliser une base de données.
 
 ### Project setup
 ```

@@ -7,19 +7,22 @@
     v-on:click="scanNFC = true"
     :showText="'Changer d\'activité ?'"
   ></stylax-button>
+  <initialisation-component></initialisation-component>
   <modal-nfc :scanNFC="scanNFC" @NFCReaded="NFCReaded"></modal-nfc>
 </template>
 
 <script>
 import StorageService from "../services/StorageService.js";
 import StylaxButton from "./StylaxButton";
-import ModalNfc from "./ModalNfc.vue";
+import ModalNfc from "./ModalNfc";
+import InitialisationComponent from './InitialisationComponent';
 
 export default {
   emits: ["StartActivity"],
   components: {
     StylaxButton,
     ModalNfc,
+    InitialisationComponent,
   },
   data() {
     return {
@@ -41,7 +44,6 @@ export default {
       this.$emit("StartActivity");
     },
     NFCReaded(serial_number) {
-      console.log(serial_number);
       this.scanNFC = false;
       if (serial_number) {
         try {
