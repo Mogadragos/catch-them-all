@@ -134,6 +134,7 @@ export default {
 }
 
 .params-menu-body {
+  background-color: white;
   overflow: hidden;
   margin-left: auto;
   width: 80%;
